@@ -8,60 +8,6 @@ import TicketsByProgress from '../components/TicketsByProgress';
 import TicketsByUser from '../components/TicketsByUser';
 import MyProjectsTable from '../components/MyProjectsTable';
 
-const DaGrid = () => {
-  return (
-    <Grid
-      h='full'
-      templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
-    >
-      {/* Tickets by priority */}
-      <GridItem
-        marginBottom='1rem'
-        display='flex'
-        justifyContent='center'
-        alignItems='center'
-      >
-        <Box h={{ base: '15rem', md: '80%' }} w={{ base: '80%' }}>
-          <TicketsByPriority />
-        </Box>
-      </GridItem>
-      {/* Tickets By Type */}
-      <GridItem
-        marginBottom='1rem'
-        display='flex'
-        justifyContent='center'
-        alignItems='center'
-      >
-        <Box h={{ base: '15rem', md: '80%' }} w={{ base: '80%' }}>
-          <TicketsByType />
-        </Box>
-      </GridItem>
-      {/* Tickets By Progress */}
-      <GridItem
-        marginBottom='1rem'
-        display='flex'
-        justifyContent='center'
-        alignItems='center'
-      >
-        <Box h={{ base: '15rem', md: '80%' }} w={{ base: '80%' }}>
-          <TicketsByProgress />
-        </Box>
-      </GridItem>
-      {/* Tickets By User */}
-      <GridItem
-        marginBottom='1rem'
-        display='flex'
-        justifyContent='center'
-        alignItems='center'
-      >
-        <Box h={{ base: '15rem', md: '80%' }} w={{ base: '80%' }}>
-          <TicketsByUser />
-        </Box>
-      </GridItem>
-    </Grid>
-  );
-};
-
 const Dashboard: NextPage = () => {
   return (
     <Flex h='100vh' flexDir='row' overflow='hidden' maxW='2000px'>
