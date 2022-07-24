@@ -27,10 +27,10 @@ import { BsChevronDoubleLeft, BsChevronDoubleRight } from 'react-icons/bs';
 import { Project } from '../types';
 import { nanoid } from 'nanoid';
 
-const RightArrow = chakra(AiOutlineArrowRight);
-const LeftArrow = chakra(AiOutlineArrowLeft);
-const RightChevron = chakra(BsChevronDoubleRight);
-const LeftChevron = chakra(BsChevronDoubleLeft);
+const ArrowRight = chakra(AiOutlineArrowRight);
+const ArrowLeft = chakra(AiOutlineArrowLeft);
+const ChevronRight = chakra(BsChevronDoubleRight);
+const ChevronLeft = chakra(BsChevronDoubleLeft);
 
 const MyProjectsTable: NextPage = () => {
   const [data, setData] = useState<Project[] | []>([]);
@@ -76,7 +76,7 @@ const MyProjectsTable: NextPage = () => {
     {
       columns,
       data,
-      initialState: { pageIndex: 2 },
+      initialState: { pageIndex: 0 },
     },
     usePagination
   );
@@ -86,14 +86,90 @@ const MyProjectsTable: NextPage = () => {
       {
         project: 'Bug Tracker',
         description:
-          'Project management tool to track project issues, bugs, etc',
+          'Project management tool to track project issues, bugs, et c',
         contributors: ['Shariq Ali'],
       },
       {
         project: 'CrimsonCodex Youtube',
         description:
           'Youtube channel where I play games like Minecraft & Terraria',
-        contributors: ['Shariq Ali, TheRandomBros'],
+        contributors: ['shariq ali='],
+      },
+      {
+        project: 'Demo Bug Tracker',
+        description:
+          'Film the video to preview bug trackerbug trackerbug tracker',
+        contributors: ['Shariq Ali'],
+      },
+      {
+        project: 'Demo Bug Tracker',
+        description: 'Film the video to preview bug tracker',
+        contributors: ['Shariq Ali'],
+      },
+      {
+        project: 'Demo Bug Tracker',
+        description: 'Film the video to preview bug tracker',
+        contributors: ['Shariq Ali'],
+      },
+      {
+        project: 'Demo Bug Tracker',
+        description: 'Film the video to preview bug tracker',
+        contributors: ['Shariq Ali'],
+      },
+      {
+        project: 'Demo Bug Tracker',
+        description: 'Film the video to preview bug tracker',
+        contributors: ['Shariq Ali'],
+      },
+      {
+        project: 'Demo Bug Tracker',
+        description: 'Film the video to preview bug tracker',
+        contributors: ['Shariq Ali'],
+      },
+      {
+        project: 'Demo Bug Tracker',
+        description: 'Film the video to preview bug tracker',
+        contributors: ['Shariq Ali'],
+      },
+      {
+        project: 'Demo Bug Tracker',
+        description: 'Film the video to preview bug tracker',
+        contributors: ['Shariq Ali'],
+      },
+      {
+        project: 'Demo Bug Tracker',
+        description: 'Film the video to preview bug tracker',
+        contributors: ['Shariq Ali'],
+      },
+      {
+        project: 'Demo Bug Tracker',
+        description: 'Film the video to preview bug tracker',
+        contributors: ['Shariq Ali'],
+      },
+      {
+        project: 'Demo Bug Tracker',
+        description: 'Film the video to preview bug tracker',
+        contributors: ['Shariq Ali'],
+      },
+      {
+        project: 'Demo Bug Tracker',
+        description: 'Film the video to preview bug tracker',
+        contributors: ['Shariq Ali'],
+      },
+      {
+        project: 'Demo Bug Tracker',
+        description: 'Film the video to preview bug tracker',
+        contributors: ['Shariq Ali'],
+      },
+      {
+        project: 'Demo Bug Tracker',
+        description: 'Film the video to preview bug tracker',
+        contributors: ['Shariq Ali'],
+      },
+      {
+        project: 'Demo Bug Tracker',
+        description: 'Film the video to preview bug tracker',
+        contributors: ['Shariq Ali'],
       },
       {
         project: 'Demo Bug Tracker',
@@ -104,23 +180,100 @@ const MyProjectsTable: NextPage = () => {
   }, []);
 
   return (
-    <TableContainer height='60%'>
-      <Table {...getTableBodyProps()}>
-        <Thead>
-          {headerGroups.map((headerGroup) => (
-            <Tr {...headerGroup.getHeaderGroupProps()} key={nanoid()}>
-              {headerGroup.headers
-                .filter((header) => header.Header !== 'My Projects')
-                .map((column) => (
-                  <Th {...column.getHeaderProps()} key={nanoid()}>
-                    {column.render('Header')}
-                  </Th>
-                ))}
-            </Tr>
-          ))}
-        </Thead>
-      </Table>
-    </TableContainer>
+    <>
+      <TableContainer whiteSpace='normal' height='60%'>
+        <Table variant='simple' {...getTableBodyProps()}>
+          <Thead>
+            {headerGroups.map((headerGroup) => (
+              <Tr {...headerGroup.getHeaderGroupProps()} key={nanoid()}>
+                {headerGroup.headers
+                  .filter((header) => header.Header !== 'My Projects')
+                  .map((column) => (
+                    <Th {...column.getHeaderProps()} key={nanoid()}>
+                      {column.render('Header')}
+                    </Th>
+                  ))}
+              </Tr>
+            ))}
+          </Thead>
+          <Tbody {...getTableBodyProps()}>
+            {page.map((row, i) => {
+              prepareRow(row);
+              return (
+                <Tr {...row.getRowProps()} key={nanoid()}>
+                  {row.cells.map((cell) => {
+                    return (
+                      <Td {...cell.getCellProps()} key={nanoid()}>
+                        {cell.render('Cell')}
+                      </Td>
+                    );
+                  })}
+                </Tr>
+              );
+            })}
+          </Tbody>
+        </Table>
+      </TableContainer>
+
+      <Flex justifyContent='center' alignItems='center'>
+        {/* Chevron Left */}
+        <Tooltip label='First Page'>
+          <IconButton
+            color='primary'
+            aria-label='Chevron Left'
+            onClick={() => gotoPage(0)}
+            isDisabled={!canPreviousPage}
+            icon={<ChevronLeft size='20px' />}
+          />
+        </Tooltip>
+        {/* Arrow Left */}
+        <Tooltip label='Previous Page'>
+          <IconButton
+            color='primary'
+            aria-label='Arrow Left'
+            onClick={previousPage}
+            isDisabled={!canPreviousPage}
+            icon={<ArrowLeft size='20px' />}
+          />
+        </Tooltip>
+
+        {/* Page Tracker */}
+        <Text
+          fontWeight='bold'
+          color='tertiary'
+          backgroundColor='primary'
+          border='2px'
+          borderRadius='20px'
+          padding='.5rem'
+          margin='1rem'
+          width='45px'
+          textAlign='center'
+        >
+          {pageIndex + 1}
+        </Text>
+
+        {/* Chevron Right */}
+        <Tooltip label='Next Page'>
+          <IconButton
+            color='primary'
+            aria-label='Arrow Right'
+            onClick={nextPage}
+            isDisabled={!canNextPage}
+            icon={<ArrowRight size='20px' />}
+          />
+        </Tooltip>
+        {/* Arrow Right */}
+        <Tooltip label='Last Page'>
+          <IconButton
+            color='primary'
+            aria-label='Chevron Right'
+            onClick={() => gotoPage(pageCount - 1)}
+            isDisabled={!canNextPage}
+            icon={<ChevronRight size='20px' />}
+          />
+        </Tooltip>
+      </Flex>
+    </>
   );
 };
 
