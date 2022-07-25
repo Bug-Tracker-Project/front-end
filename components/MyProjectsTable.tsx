@@ -11,15 +11,10 @@ import {
   IconButton,
   Text,
   Tooltip,
-  Select,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
   TableContainer,
-  TableCaption,
   chakra,
+  Box,
+  Button,
 } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from 'react-icons/ai';
@@ -76,7 +71,7 @@ const MyProjectsTable: NextPage = () => {
     {
       columns,
       data,
-      initialState: { pageIndex: 0 },
+      initialState: { pageIndex: 0, pageSize: 5 },
     },
     usePagination
   );
@@ -181,15 +176,46 @@ const MyProjectsTable: NextPage = () => {
 
   return (
     <>
-      <TableContainer whiteSpace='normal' height='60%'>
-        <Table variant='simple' {...getTableBodyProps()}>
-          <Thead>
+      <TableContainer whiteSpace='normal' height='65%'>
+        <Flex
+          justifyContent='space-between'
+          alignItems='center'
+          backgroundColor='primary'
+          color='tertiary'
+          w='full'
+        >
+          <Box>
+            <Text>Your Projects</Text>
+            <Text>Alll the projects you have in the database</Text>
+          </Box>
+          <Button
+            color='primary'
+            backgroundColor='tertiary'
+            border='1px'
+            borderColor='primary'
+          >
+            Create New Project
+          </Button>
+        </Flex>
+
+        <Table
+          {...getTableBodyProps()}
+          size='sm'
+          border='2px'
+          borderColor='primary'
+        >
+          <Thead border='2px' borderColor='primary'>
             {headerGroups.map((headerGroup) => (
               <Tr {...headerGroup.getHeaderGroupProps()} key={nanoid()}>
                 {headerGroup.headers
                   .filter((header) => header.Header !== 'My Projects')
                   .map((column) => (
-                    <Th {...column.getHeaderProps()} key={nanoid()}>
+                    <Th
+                      {...column.getHeaderProps()}
+                      key={nanoid()}
+                      border='2px'
+                      borderColor='primary'
+                    >
                       {column.render('Header')}
                     </Th>
                   ))}
@@ -203,7 +229,12 @@ const MyProjectsTable: NextPage = () => {
                 <Tr {...row.getRowProps()} key={nanoid()}>
                   {row.cells.map((cell) => {
                     return (
-                      <Td {...cell.getCellProps()} key={nanoid()}>
+                      <Td
+                        {...cell.getCellProps()}
+                        key={nanoid()}
+                        border='2px'
+                        borderColor='primary'
+                      >
                         {cell.render('Cell')}
                       </Td>
                     );

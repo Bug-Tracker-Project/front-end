@@ -1,16 +1,12 @@
 import type { NextPage } from 'next';
-import { Box, Center, Divider, Flex, Grid, GridItem } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 import NavBar from '../components/Navbar';
 import DashHeader from '../components/DashHeader';
-import TicketsByPriority from '../components/TicketsByPriority';
-import TicketsByType from '../components/TicketsByType';
-import TicketsByProgress from '../components/TicketsByProgress';
-import TicketsByUser from '../components/TicketsByUser';
 import MyProjectsTable from '../components/MyProjectsTable';
 
 const Dashboard: NextPage = () => {
   return (
-    <Flex h='100vh' flexDir='row' overflow='hidden' maxW='2000px'>
+    <Flex h='100vh' flexDir='row' overflow='hidden'>
       {/* Dashboard/Navbar */}
       <Flex
         w='15%'
